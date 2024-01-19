@@ -22,12 +22,28 @@ const CommentPage = (props) => {
 
     const history = useNavigate();
     const [comments, setComments] = useState([]);
+    const [user, setUser] = useState("");
 
     const fetchComments = async (postId) => {
         try {
             const response = await fetch(`https://hopestone.onrender.com/v1/post/comment/${postId}`);
             const data = await response.json();
+
+            console.log("comment", data);
             setComments(data);
+
+        } catch (error) {
+            console.error('Error fetching comments:', error);
+        }
+    };
+    const fetchUser = async () => {
+        try {
+
+            const result = await getUser();
+            setUser(result);
+            console.log("user", result);
+
+
 
         } catch (error) {
             console.error('Error fetching comments:', error);
@@ -62,13 +78,14 @@ const CommentPage = (props) => {
     useEffect(() => {
 
         fetchComments(props.postId);
+        fetchUser();
     }, [props.postId, createComment]);
 
     return (
         <div>
             <h2>Comments</h2>
 
-            {getUser ? (
+            {user ? (
                 <>
                     <Comment onSubmit={handleCommentSubmit} />
                 </>
@@ -76,10 +93,44 @@ const CommentPage = (props) => {
                 <p>Login to leave a comment</p>
             )}
 
+
+
+
+
+            {/* /*<div className="card w-100 scroll-box">
+                {
+                    comments ? (
+                        <h3>Read a comment</h3>
+                        <div className="comment-container">
+                            {Array.isArray(comments) &&
+                                comments.map((comment) => (
+                                    <div key={comment._id} className="comment">
+                                        <img
+                                            className="profileimage"
+                                            src={`https://hopestone.onrender.com/uploads/2024/1/${comment.user.UserId.image}`}
+                                            alt=""
+                                        />
+                                        <h5>
+                                            <span>{comment.user.UserId.name}</span>
+                                            <b> {comment.createdAt}</b>
+                                        </h5>
+                                        <p>
+                                            <b>{comment.content}</b>
+                                            {getUser && comment.user.UserId._id === getUser._id && (
+                                                <button onClick={() => handleCommentDelete(comment._id)}>Delete</button>
+                                            )}
+                                        </p>
+                                    </div>
+                                ))}
+                        </div>) : (<p>No comment</p>)}
+            </div>*/ }
+
+
+
             <div className="card w-100 scroll-box">
                 <h3>Read a comment</h3>
                 <div className="comment-container">
-                    {Array.isArray(comments) &&
+                    {Array.isArray(comments) && comments.length > 0 ? (
                         comments.map((comment) => (
                             <div key={comment._id} className="comment">
                                 <img
@@ -93,12 +144,15 @@ const CommentPage = (props) => {
                                 </h5>
                                 <p>
                                     <b>{comment.content}</b>
-                                    {getUser && comment.user.UserId._id === getUser._id && (
+                                    {user && comment.user.UserId._id === user._id && (
                                         <button onClick={() => handleCommentDelete(comment._id)}>Delete</button>
                                     )}
                                 </p>
                             </div>
-                        ))}
+                        ))
+                    ) : (
+                        <p>No comments</p>
+                    )}
                 </div>
             </div>
         </div>

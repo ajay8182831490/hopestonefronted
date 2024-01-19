@@ -58,9 +58,9 @@ const Login = () => {
 
         // Save the auth token and redirect
         if (json.success && json.isVerified && json.exist) {
-            console.log(json);
 
-            localStorage.setItem('token', json.token);
+
+            localStorage.setItem('token', json.accessToken);
 
             notify("Logged successfully");
 
@@ -91,7 +91,7 @@ const Login = () => {
         setCredentials({ ...credentials, [e.target.name]: e.target.value })
     }
     return (
-        <div>
+        <div className='design'>
             <form onSubmit={handleSubmit}>
 
                 <div className="mb-3">

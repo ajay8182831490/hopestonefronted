@@ -104,23 +104,23 @@ const Verify = () => {
         setCredentials({ ...credentials, [e.target.name]: e.target.value })
     }
     return (
-        <div>
-            <div>
-                <form onSubmit={handleSubmit}>
-                    <div className="mb-3">
-                        <label htmlFor="email" className="form-label">Email address</label>
-                        <input type="email" className="form-control" id="email" name='email' aria-describedby="emailHelp" onChange={onChange} />
-                        <div id="emailHelp" className="form-text">We'll never share your email with anyone else.</div>
-                    </div>
-                    <div className="mb-3">
-                        <label htmlFor="text" className="form-label">OTP</label>
-                        <input type="password" className="form-control" id="otp" name='otp' minLength={6} required onChange={onChange} />
-                    </div>
-                    <button type="submit" className="btn btn-primary">Submit</button>
-                </form>
-                <button type="button" className="btn btn-primary" onClick={handleResendOTP}>Resend OTP</button>
-            </div>
+
+        <div className='design'>
+            <form onSubmit={handleSubmit}>
+                <div className="mb-3">
+                    <label htmlFor="email" className="form-label">Email address</label>
+                    <input type="email" className="form-control" id="email" name='email' aria-describedby="emailHelp" onChange={onChange} />
+                    <div id="emailHelp" className="form-text">We'll never share your email with anyone else.</div>
+                </div>
+                <div className="mb-3">
+                    <label htmlFor="text" className="form-label">OTP</label>
+                    <input type="password" className="form-control" id="otp" name='otp' minLength={6} required onChange={onChange} />
+                </div>
+                <button type="submit" className="btn btn-primary">Submit</button>
+            </form>
+            <button type="button" className="btn btn-primary" onClick={handleResendOTP}>Resend OTP</button>
         </div>
+
     )
 }
 

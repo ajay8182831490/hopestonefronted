@@ -38,6 +38,7 @@ const Myblog = () => {
         try {
             const result = await getUser();
 
+
             setPost(result.postIds);
         } catch (error) {
             console.error('Error fetching user data:', error);
@@ -60,6 +61,7 @@ const Myblog = () => {
     };
     useEffect(() => {
         fetchData();
+
     }, [getUser]);
 
     return (

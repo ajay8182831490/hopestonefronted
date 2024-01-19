@@ -92,7 +92,7 @@ const Signup = (props) => {
         }
     }
     return (
-        <div>
+        <div className='design'>
             <form encType="multipart/form-data" onSubmit={handleSubmit}>
                 <div className="mb-3">
                     <label htmlFor="name" className="form-label">Name</label>

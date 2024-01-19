@@ -48,7 +48,7 @@ const UpdatePassword = () => {
             method: 'PATCH',
             headers: {
                 'Content-Type': 'application/json',
-                "Authorization": localStorage.getItem('token')
+                "Authorization": `Bearer ${localStorage.getItem('token')}`
             },
             body: JSON.stringify({ password, newPassword })
         });
@@ -77,7 +77,7 @@ const UpdatePassword = () => {
 
     }
     return (
-        <div>
+        <div className='design'>
             <form onSubmit={handleSubmit}>
                 <div className="mb-3">
                     <label htmlFor="password" className="form-label">old password here</label>

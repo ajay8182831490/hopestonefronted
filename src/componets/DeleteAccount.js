@@ -48,7 +48,7 @@ const DeleteAccount = () => {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json',
-                "Authorization": localStorage.getItem('token')
+                "Authorization": `Bearer ${localStorage.getItem('token')}`
             },
             body: JSON.stringify({ password })
         });
@@ -77,7 +77,7 @@ const DeleteAccount = () => {
 
     }
     return (
-        <div>
+        <div className='design'>
             <form onSubmit={handleSubmit}>
                 <div className="mb-3">
                     <label htmlFor="password" className="form-label">Enter a Password</label>

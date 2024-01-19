@@ -24,6 +24,7 @@ import UpdatePassword from './componets/UpdatePassword';
 import Footer from './componets/Footer';
 import ResetPasswordPage from './componets/ResetPasswordPage'
 import DeleteAccount from './componets/DeleteAccount';
+import Error from './componets/Error';
 
 
 
@@ -32,11 +33,12 @@ function App() {
   return (
     <div className="App">
       <Router>
-        <Navbar />
 
+        <Navbar />
         <div className="container">
           <Routes>
             <Route path='/' element={<Home />} />
+            <Route path='*' element={<Error />} />
             <Route path='/login' element={<Login />} />
             <Route path='/signup' element={<Signup />} />
             <Route path='/About' element={<About />} />
@@ -44,6 +46,7 @@ function App() {
             <Route path='/Myblog/*' element={<Myblog />} />
             <Route path='/Myblog/Update/:postId' element={<UpdatesPost />} />
             <Route path='/Myblog/read/:postId' element={<BlogRead />} />
+            <Route path='/Myblog/read/*' element={<Error />} />
             <Route path='/Myaccount' element={<Myaccount />} />
             <Route path='/Verify' element={<Verify />} />
             <Route path='/forgetPassword' element={<ForgetPassword />} />

@@ -53,7 +53,7 @@ const Updateuser = () => {
             method: 'PATCH',
             headers: {
 
-                "Authorization": localStorage.getItem('token')
+                "Authorization": `Bearer ${localStorage.getItem('token')}`
 
 
             },
@@ -96,7 +96,7 @@ const Updateuser = () => {
         }
     }
     return (
-        <div>
+        <div className='design'>
             <form encType="multipart/form-data" onSubmit={handleSubmit}>
                 < div className="mb-3">
 

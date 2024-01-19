@@ -81,7 +81,7 @@ const UpdatesPost = () => {
         const response = await fetch(`https://hopestone.onrender.com/v1/user/post/updatePost/${postId}`, {
             method: 'PATCH',
             headers: {
-                'Authorization': localStorage.getItem('token'),
+                "Authorization": `Bearer ${localStorage.getItem('token')}`
             },
             body: formData,
         });

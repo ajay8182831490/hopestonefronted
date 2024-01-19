@@ -56,15 +56,19 @@ const BlogRead = () => {
                                     <div className=' card-body'  >
                                         <h1 className='mx-4 my-3'>{data.title}</h1>
                                         {data.images.map((image, index) => (
-                                            <img className="blogimage" key={index} src={`https://hopestone.onrender.com/uploads/2024/1/${image}`} alt="" />
+                                            <img className="blogreadimage" key={index} src={`https://hopestone.onrender.com/uploads/2024/1/${image}`} alt="" />
                                         ))}
 
 
                                         <h3 className='my-4'>{data.categories}</h3>
-                                        <p className="card-text">
-                                            {data.createdBy.name}
-                                            published at  {data.createdAt}</p>
 
+                                        {data && data.createdBy && (
+                                            <p className="card-text">
+
+
+
+                                                {data.createdBy.name}
+                                                published at  {data.createdAt}</p>)}
 
                                     </div>
                                 )}

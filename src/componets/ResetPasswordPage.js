@@ -85,16 +85,18 @@ const ResetPasswordPage = () => {
     };
 
     return (
-        <div>
-            <h2>Reset Password</h2>
-            <label htmlFor="password">New Password:</label>
-            <input
-                type="password"
-                id="password"
-                value={password}
-                onChange={handlePasswordChange}
-            />
-            <button onClick={handleResetPassword}>Reset Password</button>
+        <div className="design">
+            <div>
+                <h2>Reset Password</h2>
+                <label htmlFor="password">New Password:</label>
+                <input
+                    type="password"
+                    id="password"
+                    value={password}
+                    onChange={handlePasswordChange}
+                />
+                <button onClick={handleResetPassword}>Reset Password</button>
+            </div>
         </div>
     );
 };

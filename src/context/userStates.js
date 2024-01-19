@@ -25,38 +25,27 @@ export const UserContextProvider = ({ children }) => {
     // add a note
 
     const getUser = async () => {
-
-
-
         try {
-
-
             const response = await fetch(`${host}/v1/user/post`, {
                 method: "GET",
                 headers: {
                     "Content-Type": "application/json",
-                    "Authorization": localStorage.getItem('token')
-
-
+                    "Authorization": `Bearer ${localStorage.getItem('token')}`
                 },
-
             });
+
             if (!response.ok) {
                 throw new Error(`Server returned ${response.status} ${response.statusText}`);
             }
 
             const json = await response.json();
 
-
-
-
-            return json
+            return json;
         } catch (ex) {
-            throw new Error(ex)
+            throw new Error(ex);
         }
-
-
     };
+
     const deletePost = async (postId) => {
 
 
@@ -69,7 +58,7 @@ export const UserContextProvider = ({ children }) => {
                 method: "DELETE",
                 headers: {
                     "Content-Type": "application/json",
-                    "Authorization": localStorage.getItem('token')
+                    "Authorization": `Bearer ${localStorage.getItem('token')}`
 
 
                 },
@@ -103,7 +92,7 @@ export const UserContextProvider = ({ children }) => {
                 method: "GET",
                 headers: {
                     "Content-Type": "application/json",
-                    "Authorization": localStorage.getItem('token')
+                    "Authorization": `Bearer ${localStorage.getItem('token')}`
 
 
                 },
@@ -126,7 +115,7 @@ export const UserContextProvider = ({ children }) => {
 
 
     }
-    const allPost = async (postId) => {
+    const allPost = async () => {
 
         try {
 
@@ -166,7 +155,7 @@ export const UserContextProvider = ({ children }) => {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
-                    'Authorization': localStorage.getItem('token'), // Include the token in the headers
+                    "Authorization": `Bearer ${localStorage.getItem('token')}` // Include the token in the headers
                 },
                 body: JSON.stringify({ content }),
             })
@@ -194,7 +183,7 @@ export const UserContextProvider = ({ children }) => {
                 method: 'DELETE',
                 headers: {
                     'Content-Type': 'application/json',
-                    'Authorization': localStorage.getItem('token'), // Include the token in the headers
+                    "Authorization": `Bearer ${localStorage.getItem('token')}` // Include the token in the headers
                 },
 
             })

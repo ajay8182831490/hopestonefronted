@@ -6,17 +6,15 @@ import { useState } from "react";
 import { useEffect } from "react";
 
 
-
-// ... (other imports)
-
 const Navbar = () => {
 
 
     const context = useUserContext();
-    const { getUser } = context;
+    const { getUser, deletePost } = context;
     const [data, setData] = useState({});
 
     const history = useNavigate();
+
 
     const handleLogout = () => {
         localStorage.removeItem('token');
@@ -26,17 +24,18 @@ const Navbar = () => {
         try {
             const result = await getUser();
             setData(result);
+            console.log("hete", result);
 
 
         } catch (error) {
             console.error('Error fetching user data:', error);
         }
     };
+    const isLoggedIn = localStorage.getItem('token');
     useEffect(() => {
         fetchData();
-    }, [getUser]);
+    }, []);
 
-    const isLoggedIn = localStorage.getItem('token');
     return (
 
         <div>
@@ -63,10 +62,11 @@ const Navbar = () => {
                                     <li className="nav-item">
                                         <Link className={`nav-link `} to="/Createblog">CREATE BLOG</Link>
                                     </li>
-
                                     <li className="nav-item">
-                                        <Link className={`nav-link `} to="/Myaccount"><img className="profileimage" src={`https://hopestone.onrender.com/uploads/2024/1/${data.image}`} alt="" /></Link>
+                                        {data && data.name && (
+                                            <Link className={`nav-link `} to="/Myaccount"> {`${data.name.split(' ')[0]}`}</Link>)}
                                     </li>
+
                                     <li className="nav-item">
                                         <button onClick={handleLogout} className="btn btn-primary">Logout</button>
 
