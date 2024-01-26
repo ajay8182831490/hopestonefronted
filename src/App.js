@@ -50,7 +50,7 @@ function App() {
             <Route path='/Myaccount' element={<Myaccount />} />
             <Route path='/Verify' element={<Verify />} />
             <Route path='/forgetPassword' element={<ForgetPassword />} />
-            <Route path="/resetPassword/" element={<ResetPasswordPage />} />
+            <Route path="/resetPassword" element={<ResetPasswordPage />} />
             <Route path='/updateUser' element={<Updateuser />} />
             <Route path='/updatePassword' element={<UpdatePassword />} />
             <Route path='/deleteAccount' element={<DeleteAccount />} />

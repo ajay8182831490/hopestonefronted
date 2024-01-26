@@ -13,7 +13,7 @@ const ResetPasswordPage = () => {
     const [token, setToken] = useState('');
     const notify = (msg) => toast.success(msg, {
         position: "top-right",
-        autoClose: 3000,
+        autoClose: 500,
         hideProgressBar: false,
         closeOnClick: true,
         pauseOnHover: true,
@@ -24,7 +24,7 @@ const ResetPasswordPage = () => {
     });
     const notifyFalse = (msg) => toast.error(msg, {
         position: "top-right",
-        autoClose: 3000,
+        autoClose: 500,
         hideProgressBar: false,
         closeOnClick: true,
         pauseOnHover: true,
@@ -41,14 +41,11 @@ const ResetPasswordPage = () => {
     const location = useLocation();
 
     useEffect(() => {
-        // Access the query parameters from the location object
         const queryParams = new URLSearchParams(location.search);
         const token = queryParams.get('token');
 
-        // Now 'token' contains the value of the 'token' query parameter
         setToken(token);
 
-        // You can use 'token' in your component logic (e.g., set it in state, make API calls, etc.)
     }, [location.search]);
     const handlePasswordChange = (e) => {
         setPassword(e.target.value);
@@ -56,7 +53,6 @@ const ResetPasswordPage = () => {
 
     const handleResetPassword = async () => {
         try {
-            // Make API call to reset password using the token and new password
 
             const response = await fetch(`https://hopestone.onrender.com/v1/user/resetPassword/?token=${token}`, {
                 method: 'PATCH',
@@ -75,7 +71,6 @@ const ResetPasswordPage = () => {
                 notify(json.msg);
                 navigate('/');
             } else {
-                // Handle error (e.g., display error message to the user)
                 notifyFalse(json.msg);
                 console.error('Password reset failed');
             }
@@ -86,16 +81,16 @@ const ResetPasswordPage = () => {
 
     return (
         <div className="design">
-            <div>
-                <h2>Reset Password</h2>
-                <label htmlFor="password">New Password:</label>
-                <input
-                    type="password"
-                    id="password"
-                    value={password}
-                    onChange={handlePasswordChange}
-                />
-                <button onClick={handleResetPassword}>Reset Password</button>
+            <div className='form'>
+                <h2 style={{ color: 'black' }}>Reset Password</h2>
+
+                <div className="mb-3">
+                    <label htmlFor="password" className="form-label"> New Password</label>
+                    <input type="password" className="form-control" id="password" name='password' minLength={5} required onChange={handlePasswordChange} />
+                </div>
+                <div className="button">
+                    <button className='btn btn-primary' onClick={handleResetPassword}>Submit</button>
+                </div>
             </div>
         </div>
     );

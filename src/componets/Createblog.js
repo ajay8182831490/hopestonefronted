@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactQuill from 'react-quill';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import 'react-quill/dist/quill.snow.css';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
@@ -21,6 +21,17 @@ const Createblog = () => {
         theme: "colored"
 
     });
+    const notifyFalse = (msg) => toast.error(msg, {
+        position: "top-right",
+        autoClose: 500,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored"
+
+    });
     const notify1 = () => toast.error(" Something error plaese try after some time");
 
 
@@ -29,6 +40,22 @@ const Createblog = () => {
 
 
     const [images, setImages] = useState('');
+
+    const isLoggedIn = localStorage.getItem('token');
+
+
+    useEffect(() => {
+        if (!isLoggedIn) {
+            // Redirect to login page after showing the notification
+            history('/login');
+            notifyFalse('Unauthorized access. Please log in to update your password.');
+            // You can choose not to render anything else after the redirect
+            return;
+        }
+
+
+    }, [isLoggedIn]);
+
 
 
 
@@ -105,27 +132,33 @@ const Createblog = () => {
  
       */
         <div className='createblog'>
-            <form encType="multipart/form-data" onSubmit={handleSubmit}>
-                <div className="mb-3">
-                    <label htmlFor="title" className="form-label">Title</label>
-                    <input type="text" className="form-control" id="title" name='title' placeholder="title name" onChange={onChange} />
-                </div>
-                <div className="mb-3">
-                    <label htmlFor="categories" className="form-label">Heading</label>
-                    <input type="text" className="form-control" id="categories" name='categories' placeholder="Heading" onChange={onChange} />
-                </div>
-                <div className="mb-3">
-                    <label htmlFor="image" className="form-label">Image</label>
-                    <input type="file" className="form-control" id="image" name='image' placeholder="select image" onChange={onChange} />
-                </div>
-                <div className="mb-3">
-                    <label htmlFor="exampleFormControlTextarea1" className="form-label">Description</label>
+            <div className="form1">
+                <h3 style={{ color: 'black', margin: '3px', textAlign: 'center' }}>Create  a Blog</h3>
+                <form encType="multipart/form-data" onSubmit={handleSubmit}>
+                    <div className="mb-3">
+                        <label htmlFor="title" className="form-label">Title</label>
+                        <input type="text" className="form-control" id="title" name='title' placeholder="title name" onChange={onChange} />
+                    </div>
+                    <div className="mb-3">
+                        <label htmlFor="categories" className="form-label">Heading</label>
+                        <input type="text" className="form-control" id="categories" name='categories' placeholder="Heading" onChange={onChange} />
+                    </div>
+                    <div className="mb-3">
+                        <label htmlFor="image" className="form-label">Image</label>
+                        <input type="file" className="form-control" id="image" name='image' placeholder="select image" onChange={onChange} />
+                    </div>
+                    <div className="mb-3">
+                        <label htmlFor="exampleFormControlTextarea1" className="form-label">Description</label>
 
-                    <ReactQuill theme="snow" value={value} onChange={setValue} />
+                        <ReactQuill theme="snow" value={value} onChange={setValue} />
 
-                </div>
-                <button type="submit" className="btn btn-primary">Submit</button>
-            </form >
+                    </div>
+                    <div className="button">
+
+                        <button type="submit" className="btn btn-primary ">Submit</button>
+                    </div>
+                </form >
+            </div>
 
         </div>
     )

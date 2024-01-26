@@ -9,7 +9,7 @@ const DeleteAccount = () => {
     const [credentials, setCredentials] = useState({ password: "" });
     const notify = (msg) => toast.success(msg, {
         position: "top-right",
-        autoClose: 3000,
+        autoClose: 500,
         hideProgressBar: false,
         closeOnClick: true,
         pauseOnHover: true,
@@ -20,7 +20,7 @@ const DeleteAccount = () => {
     });
     const notifyFalse = (msg) => toast.error(msg, {
         position: "top-right",
-        autoClose: 3000,
+        autoClose: 500,
         hideProgressBar: false,
         closeOnClick: true,
         pauseOnHover: true,
@@ -29,6 +29,17 @@ const DeleteAccount = () => {
         theme: "colored"
 
     });
+
+    const isLoggedIn = localStorage.getItem('token');
+
+    if (!isLoggedIn) {
+        history('/login');
+        notifyFalse('Unauthorized access. Please log in to update your password.');
+        // Redirect to home page after showing the notification
+        // You can choose not to render anything else after the redirect
+        return null
+    }
+
 
 
     const handleSubmit = async (e) => {
@@ -78,19 +89,22 @@ const DeleteAccount = () => {
     }
     return (
         <div className='design'>
-            <form onSubmit={handleSubmit}>
-                <div className="mb-3">
-                    <label htmlFor="password" className="form-label">Enter a Password</label>
-                    <input type="password" className="form-control" id="password" name='password' aria-describedby="emailHelp" onChange={onChange} />
+            <div className="form">
+                <h3 style={{ color: 'black', margin: '3px' }}>Delete Account</h3>
+                <form onSubmit={handleSubmit}>
+                    <div className="mb-3">
+                        <label htmlFor="password" className="form-label">Enter a Password</label>
+                        <input type="password" className="form-control" id="password" placeholder='Enter a Password' name='password' aria-describedby="emailHelp" onChange={onChange} />
 
-                </div>
+                    </div>
 
 
 
 
 
-                <button type="submit" className="btn btn-primary">Submit</button>
-            </form>
+                    <button type="submit" className="btn btn-primary">Submit</button>
+                </form>
+            </div>
         </div>
     )
 }

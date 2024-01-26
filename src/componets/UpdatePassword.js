@@ -1,15 +1,15 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const UpdatePassword = () => {
-    let history = useNavigate();
+    const history = useNavigate();
     const [credentials, setCredentials] = useState({ password: "", newPassword: "" });
     const notify = (msg) => toast.success(msg, {
         position: "top-right",
-        autoClose: 3000,
+        autoClose: 500,
         hideProgressBar: false,
         closeOnClick: true,
         pauseOnHover: true,
@@ -20,7 +20,7 @@ const UpdatePassword = () => {
     });
     const notifyFalse = (msg) => toast.error(msg, {
         position: "top-right",
-        autoClose: 3000,
+        autoClose: 500,
         hideProgressBar: false,
         closeOnClick: true,
         pauseOnHover: true,
@@ -29,6 +29,19 @@ const UpdatePassword = () => {
         theme: "colored"
 
     });
+    const isLoggedIn = localStorage.getItem('token');
+
+    useEffect(() => {
+        if (!isLoggedIn) {
+            // Redirect to login page after showing the notification
+            history('/login');
+            notifyFalse('Unauthorized access. Please log in to update your password.');
+
+            return;
+        }
+
+
+    }, [isLoggedIn]);
 
 
     const handleSubmit = async (e) => {
@@ -76,27 +89,36 @@ const UpdatePassword = () => {
         setCredentials({ ...credentials, [e.target.name]: e.target.value })
 
     }
+
+
+
     return (
+
+
         <div className='design'>
-            <form onSubmit={handleSubmit}>
-                <div className="mb-3">
-                    <label htmlFor="password" className="form-label">old password here</label>
-                    <input type="password" className="form-control" id="password" name='password' aria-describedby="emailHelp" onChange={onChange} />
+            <div className="form">
+                <h3 style={{ color: 'black', margin: '3px' }}>Update Password</h3>
+                <form onSubmit={handleSubmit}>
+                    <div className="mb-3">
+                        <label htmlFor="password" className="form-label">old password here</label>
+                        <input type="password" className="form-control" id="password" name='password' aria-describedby="emailHelp" onChange={onChange} />
 
-                </div>
-                <div className="mb-3">
-                    <label htmlFor="newPassword" className="form-label">New password</label>
-                    <input type="password" className="form-control" id="newPassword" name='newPassword' aria-describedby="emailHelp" onChange={onChange} />
+                    </div>
+                    <div className="mb-3">
+                        <label htmlFor="newPassword" className="form-label">New password</label>
+                        <input type="password" className="form-control" id="newPassword" name='newPassword' aria-describedby="emailHelp" onChange={onChange} />
 
-                </div>
-
-
+                    </div>
 
 
 
-                <button type="submit" className="btn btn-primary">Submit</button>
-            </form>
+
+
+                    <button type="submit" className="btn btn-primary">Submit</button>
+                </form>
+            </div>
         </div>
+
     )
 }
 export default UpdatePassword

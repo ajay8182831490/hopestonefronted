@@ -11,7 +11,7 @@ const ForgetPassword = () => {
     let history = useNavigate();
     const notify = (msg) => toast.success(msg, {
         position: "top-right",
-        autoClose: 3000,
+        autoClose: 500,
         hideProgressBar: false,
         closeOnClick: true,
         pauseOnHover: true,
@@ -66,7 +66,8 @@ const ForgetPassword = () => {
     return (
 
         <div className="design">
-            <div>
+            <div className='form'>
+                <h3 style={{ color: 'black' }}>Forget Password</h3>
                 <form onSubmit={handleSubmit}>
 
                     <div className="mb-3">

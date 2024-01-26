@@ -1,6 +1,6 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -11,7 +11,7 @@ const Updateuser = () => {
     const [updateType, setUpdateType] = useState('name');
     const notify = (msg) => toast.success(msg, {
         position: "top-right",
-        autoClose: 3000,
+        autoClose: 500,
         hideProgressBar: false,
         closeOnClick: true,
         pauseOnHover: true,
@@ -22,7 +22,7 @@ const Updateuser = () => {
     });
     const notifyFalse = (msg) => toast.error(msg, {
         position: "top-right",
-        autoClose: 3000,
+        autoClose: 500,
         hideProgressBar: false,
         closeOnClick: true,
         pauseOnHover: true,
@@ -31,6 +31,18 @@ const Updateuser = () => {
         theme: "colored"
 
     });
+    const isLoggedIn = localStorage.getItem('token');
+    useEffect(() => {
+        if (!isLoggedIn) {
+            // Redirect to login page after showing the notification
+            history('/login');
+            notifyFalse('Unauthorized access. Please log in to update your password.');
+
+            return;
+        }
+
+
+    }, [isLoggedIn]);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -97,46 +109,49 @@ const Updateuser = () => {
     }
     return (
         <div className='design'>
-            <form encType="multipart/form-data" onSubmit={handleSubmit}>
-                < div className="mb-3">
+            <div className="form">
+                <h3 style={{ color: 'black', margin: '3px' }}>Update Profile</h3>
+                <form encType="multipart/form-data" onSubmit={handleSubmit}>
+                    < div className="mb-3">
 
-                    <label htmlFor="updateType" className="form-label">
-                        Select Update Type
-                    </label>
-                    <select
-                        id="updateType"
-                        name="updateType"
-                        className="form-select"
-                        onChange={(e) => setUpdateType(e.target.value)}
-                        value={updateType}
-                    >
-                        <option value="name">Update Name</option>
-                        <option value="image">Update Image</option>
+                        <label htmlFor="updateType" className="form-label">
+                            Select Update Type
+                        </label>
+                        <select
+                            id="updateType"
+                            name="updateType"
+                            className="form-select"
+                            onChange={(e) => setUpdateType(e.target.value)}
+                            value={updateType}
+                        >
+                            <option value="name">Update Name</option>
+                            <option value="image">Update Image</option>
 
-                    </select>
-
-
-                </div>
-
-
-                {updateType === 'name' && (
-
-                    <div className="mb-3">
-
-                        <label htmlFor="name" className="form-label">Name</label>
-                        <input type="text" className="form-control" id="name" name='name' aria-describedby="emailHelp" onChange={onChange} />
-
-                    </div>)}
-
-                {updateType === 'image' && (
-                    <div className="mb-3">
-                        <label htmlFor="image" className="form-label">image</label>
-                        <input type="file" className="form-control" id="image" name='image' onChange={onChange} />
-                    </div>)}
+                        </select>
 
 
-                <button type="submit" className="btn btn-primary">Submit</button>
-            </form>
+                    </div>
+
+
+                    {updateType === 'name' && (
+
+                        <div className="mb-3">
+
+                            <label htmlFor="name" className="form-label">Name</label>
+                            <input type="text" className="form-control" id="name" name='name' aria-describedby="emailHelp" onChange={onChange} />
+
+                        </div>)}
+
+                    {updateType === 'image' && (
+                        <div className="mb-3">
+                            <label htmlFor="image" className="form-label">image</label>
+                            <input type="file" className="form-control" id="image" name='image' onChange={onChange} />
+                        </div>)}
+
+
+                    <button type="submit" className="btn btn-primary">Submit</button>
+                </form>
+            </div>
         </div>
     )
 }

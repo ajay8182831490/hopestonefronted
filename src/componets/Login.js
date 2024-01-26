@@ -9,7 +9,7 @@ const Login = () => {
     let history = useNavigate();
     const notify = (msg) => toast.success(msg, {
         position: "top-right",
-        autoClose: 3000,
+        autoClose: 500,
         hideProgressBar: false,
         closeOnClick: true,
         pauseOnHover: true,
@@ -20,7 +20,7 @@ const Login = () => {
     });
     const notifyFalse = (msg) => toast.error(msg, {
         position: "top-right",
-        autoClose: 3000,
+        autoClose: 500,
         hideProgressBar: false,
         closeOnClick: true,
         pauseOnHover: true,
@@ -92,25 +92,30 @@ const Login = () => {
     }
     return (
         <div className='design'>
-            <form onSubmit={handleSubmit}>
 
-                <div className="mb-3">
-                    <label htmlFor="email" className="form-label">Email address</label>
-                    <input type="email" className="form-control" id="email" name='email' aria-describedby="emailHelp" onChange={onChange} />
-                    <div id="emailHelp" className="form-text">We'll never share your email with anyone else.</div>
-                </div>
-                <div className="mb-3">
-                    <label htmlFor="password" className="form-label">Password</label>
-                    <input type="password" className="form-control" id="password" name='password' minLength={5} required onChange={onChange} />
-                </div>
+            <div className="form">
+                <h3 style={{ color: 'black' }}> Login to Account</h3>
+                <form onSubmit={handleSubmit}>
+
+                    <div className="mb-3">
+                        <label htmlFor="email" className="form-label">Email address</label>
+                        <input type="email" className="form-control" id="email" name='email' aria-describedby="emailHelp" onChange={onChange} />
+
+                    </div>
+                    <div className="mb-3">
+                        <label htmlFor="password" className="form-label">Password</label>
+                        <input type="password" className="form-control" id="password" name='password' minLength={5} required onChange={onChange} />
+                    </div>
 
 
 
-                <button type="submit" className="btn btn-primary">Submit</button>
-            </form>
-            <>don"t have account?</> <span><Link to="/signup">Signup</Link></span>
+                    <button type="submit" className="btn btn-primary">Submit</button>
+                </form>
 
-            <p><span><Link to="/forgetPassword">Forget Password</Link></span></p>
+                <>don"t have account?</> <span className='span' ><Link to="/signup" style={{ color: 'black', fontSize: '16px', fontWeight: 'bold', textDecoration: 'none' }}>Signup</Link></span>
+
+                <p><span className='span'><Link to="/forgetPassword" style={{ color: 'black', fontSize: '16px', fontWeight: 'bold', textDecoration: 'none' }}>Forget Password</Link></span></p>
+            </div>
         </div>
     )
 }

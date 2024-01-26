@@ -18,7 +18,7 @@ const UpdatesPost = () => {
 
     const notify = (msg) => toast.success(msg, {
         position: "top-right",
-        autoClose: 3000,
+        autoClose: 500,
         hideProgressBar: false,
         closeOnClick: true,
         pauseOnHover: true,
@@ -29,7 +29,7 @@ const UpdatesPost = () => {
     });
     const notifyFalse = (msg) => toast.error(msg, {
         position: "top-right",
-        autoClose: 3000,
+        autoClose: 500,
         hideProgressBar: false,
         closeOnClick: true,
         pauseOnHover: true,
@@ -47,6 +47,19 @@ const UpdatesPost = () => {
             console.error('Error fetching user data:', error);
         }
     };
+    const isLoggedIn = localStorage.getItem('token');
+
+    useEffect(() => {
+        if (!isLoggedIn) {
+            history('/login');
+            notifyFalse('Unauthorized access. Please log in to update your password.');
+            // Redirect to login page after showing the notification
+
+            return;
+        }
+
+        fetchData();
+    }, [isLoggedIn]);
 
 
 
@@ -121,59 +134,64 @@ const UpdatesPost = () => {
 
     return (
         <div className="createblog">
-            <form encType="multipart/form-data" onSubmit={handleSubmit}>
-                <div className="mb-3">
-                    <label htmlFor="title" className="form-label">
-                        Title
-                    </label>
-                    <input
-                        type="text"
-                        className="form-control"
-                        id="title"
-                        name="title"
-                        placeholder="Enter title name"
-                        value={credentials.title}
-                        onChange={onChange}
-                    />
-                </div>
-                <div className="mb-3">
-                    <label htmlFor="categories" className="form-label">
-                        Heading
-                    </label>
-                    <input
-                        type="text"
-                        className="form-control"
-                        id="categories"
-                        name="categories"
-                        placeholder="Enter a heading name"
-                        value={credentials.categories}
-                        onChange={onChange}
-                    />
-                </div>
-                <div className="mb-3">
-                    <label htmlFor="image" className="form-label">
-                        Image
-                    </label>
-                    <input
-                        multiple
-                        type="file"
-                        className="form-control"
-                        id="image"
-                        name="image"
-                        placeholder="Select image"
-                        onChange={onChange}
-                    />
-                </div>
-                <div className="mb-3">
-                    <label htmlFor="exampleFormControlTextarea1" className="form-label">
-                        Description
-                    </label>
-                    <ReactQuill theme="snow" value={credentials.description} onChange={handleDescriptionChange} />
-                </div>
-                <button type="submit" className="btn btn-primary">
-                    Update
-                </button>
-            </form>
+            <div className="form1">
+                <h3 style={{ color: 'black', margin: '3px', textAlign: 'center' }}>Update a Post</h3>
+                <form encType="multipart/form-data" onSubmit={handleSubmit}>
+                    <div className="mb-3">
+                        <label htmlFor="title" className="form-label">
+                            Title
+                        </label>
+                        <input
+                            type="text"
+                            className="form-control"
+                            id="title"
+                            name="title"
+                            placeholder="Enter title name"
+                            value={credentials.title}
+                            onChange={onChange}
+                        />
+                    </div>
+                    <div className="mb-3">
+                        <label htmlFor="categories" className="form-label">
+                            Heading
+                        </label>
+                        <input
+                            type="text"
+                            className="form-control"
+                            id="categories"
+                            name="categories"
+                            placeholder="Enter a heading name"
+                            value={credentials.categories}
+                            onChange={onChange}
+                        />
+                    </div>
+                    <div className="mb-3">
+                        <label htmlFor="image" className="form-label">
+                            Image
+                        </label>
+                        <input
+                            multiple
+                            type="file"
+                            className="form-control"
+                            id="image"
+                            name="image"
+                            placeholder="Select image"
+                            onChange={onChange}
+                        />
+                    </div>
+                    <div className="mb-3">
+                        <label htmlFor="exampleFormControlTextarea1" className="form-label">
+                            Description
+                        </label>
+                        <ReactQuill theme="snow" value={credentials.description} onChange={handleDescriptionChange} />
+                    </div>
+                    <div className="button">
+                        <button type="submit" className="btn btn-primary">
+                            Update
+                        </button>
+                    </div>
+                </form>
+            </div>
         </div>
     );
 };

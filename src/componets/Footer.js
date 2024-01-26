@@ -1,5 +1,5 @@
 import React from 'react'
-import './Footer.css'
+//import './Footer.css'
 import { Link } from 'react-router-dom'
 
 
@@ -29,30 +29,30 @@ const Footer = () => {
 
                         </ul>
                     </div>
-                    <div className="footpanel">
+                    <div className="footpanel -mx-3">
                         <div className="imdiv">
                             <ul>
-                                <p className="w h">Social</p>
+                                <p className="w h color-white">Social</p>
                                 <div className="d">
-                                    <li className="h p"><i className="fa fa-github h"></i><Link
-                                        to="https://github.com/ajay8182831490">github</Link></li>
+                                    <li className="h p"><i className="fa fa-github h"></i><Link style={{ color: 'white', fontWeight: 'bold', textDecoration: 'none', }}
+                                        to="https://github.com/ajay8182831490">Github</Link></li>
                                 </div>
 
                                 <div className="d">
-                                    <li className="h p"><i className="fa fa-linkedin h"></i> <Link
-                                        to="https://www.linkedin.com/in/abhiajay-gupta/">linkedin</Link></li>
+                                    <li className="h p"> <Link style={{ color: 'white', fontWeight: 'bold', textDecoration: 'none', }}
+                                        to="https://www.linkedin.com/in/abhiajay-gupta/">Linkedin</Link></li>
                                 </div>
                                 <div className="d">
-                                    <li className="h p"><i className="fa fa-youtube h"></i><Link
+                                    <li className="h p"><i className="fa fa-youtube h"></i><Link style={{ color: 'white', fontWeight: 'bold', textDecoration: 'none', }}
                                         to="https://www.youtube.com/watch">Youtube</Link></li>
                                 </div>
                                 <div className="d">
-                                    <li className="h p"><i className="fa fa-twitter h"></i><Link
+                                    <li className="h p"><i className="fa fa-twitter h"></i><Link style={{ color: 'white', fontWeight: 'bold', textDecoration: 'none', }}
                                         to="https://twitter.com/twitter">Twitter</Link></li>
                                 </div>
 
                                 <div className="d">
-                                    <li className="h p"><i className="fa fa-facebook h"></i> <Link
+                                    <li className="h p"><i className="fa fa-facebook h"></i> <Link style={{ color: 'white', fontWeight: 'bold', textDecoration: 'none', }}
                                         to="https://www.facebook.com/profile.php?id=100022149935080">Facebook</Link></li>
                                 </div>
                             </ul>
@@ -62,12 +62,12 @@ const Footer = () => {
                 </div>
                 <div className="foot1">
                     <div className="pages">
-                        <Link to="">Contidions of Use</Link>
-                        <Link>
-                            Privacy Policy</Link><Link>
+                        <Link to="" style={{ color: 'green', fontSize: '16px', fontWeight: 'bold', textDecoration: 'none', margin: '4px' }}>Contidions of Use</Link>
+                        <Link style={{ color: 'green', fontSize: '16px', fontWeight: 'bold', textDecoration: 'none', margin: '4px' }}>
+                            Privacy Policy</Link><Link style={{ color: 'green', fontSize: '16px', fontWeight: 'bold', textDecoration: 'none', margin: '4px' }}>
                             Your Ads Privacy Choices</Link>
                         <div className="copyright">
-                            © 2024, Blog.com, Inc. or its affiliates
+                            © 2024, Hopestone.com, Inc. or its affiliates
                         </div>
 
 

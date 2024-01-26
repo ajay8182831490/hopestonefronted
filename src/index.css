@@ -11,10 +11,12 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+.App{
+background-image: linear-gradient(to right bottom, #d16ba5, #aa629d, #845890, #614e7f, #424269, #3b4b72, #325478, #2b5d7d, #2a82a2, #29a9c3, #3ad2dd, #5ffbf1);}
 
 .container{
   margin-top: 40px;
-  margin-left: 10px;
+
 }
 .profileimage{
   width: 30px;
@@ -46,6 +48,7 @@ code {
     max-height: 30vh;
     /* This ensures that the image maintains its aspect ratio */
     display: block;
+    border-radius: 40px;
 }
 .blogreadimage{
  
@@ -65,9 +68,179 @@ code {
 
 }
 .design{
-  border: 3px solid black;
-width: 50%;
+
+width: 100%;
+border-radius: 40px;
   /* Adjust the width as needed */
   margin: auto;
   text-align: center;
+  background: rgb(63, 94, 251);
+    background: radial-gradient(circle, rgba(63, 94, 251, 1) 0%, rgba(221, 109, 132, 1) 100%);
+    text-decoration: none;
+    color: white;
+    font-weight: bolder;
+}
+.form {
+    min-width: 60%;
+    
+      /* Set your desired width */
+      margin-left: auto;
+      margin-right: auto;
+   
+      font-weight: 300;
+      /* Optional: Add a border to see the container */
+      padding: 20px;
+}
+.form1{
+  min-width: 60%;
+
+  
+    /* Set your desired width */
+    margin-left: auto;
+    margin-right: auto;
+  
+    font-weight: 300;
+    /* Optional: Add a border to see the container */
+    padding: 20px;
+    border-radius: 40px;
+    background-color: rgb(236, 216, 216);
+   color: black;
+}
+.form-label{
+  font-weight: bold;
+  color: white;
+}
+.form input {
+  border-radius: 10px;
+
+  max-width:  60%;
+
+  margin: auto;
+}
+.form1 input {
+  border-radius: 10px;
+
+  max-width:  100%;
+
+  margin: auto;
+}
+.form select{
+  border-radius: 10px;
+  backface-visibility: hidden;
+  max-width:  60%;
+
+  margin: auto;
+}
+.form input:hover{
+  background-color: black;
+  color: white;
+}
+.form1 label{
+  color: black;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.form1 input:hover{
+  background-color: black;
+  color: white;
+}
+.span Link{
+  color: black;
+  text-decoration: none;
+}
+.about{
+  width: 80%;
+  margin: auto;
+  text-align: center;
+  justify-content: center;
+  color:black;
+  background-color: white;
+  text-decoration: none;
+  border-radius: 40px;
+
+}
+.about ul{
+  list-style: none;
+}
+.button{
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+}
+.design4{
+  border-radius: 40px;
+
+  font-size: medium;
+ 
+}
+.title{
+  color: gray;
+}
+.form3{
+  border-radius: 40px;
+  background: #C9D6FF;
+    /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #E2E2E2, #C9D6FF);
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #E2E2E2, #C9D6FF);
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+.form3:hover{
+  background-color: #5ffbf1;
+}
+
+.footer{
+margin-top: 20px;
+  display: flex;
+  justify-content: space-evenly;
+  background-color: #222f3d;
+  color: white;
+  
+}
+.footpanel {
+  display: flex;
+  justify-content: space-evenly;
+  background-color: #222f3d;
+
+  color: #dddddd;
+  font-size: 1rem;
+  font-family: Arial, Helvetica, sans-serif;
+}
+.footpanel ul {
+  list-style-type: none;
+}
+.copyright {
+  font-size: 0.7rem;
+  line-height: 30px;
+  text-align: center;
+  justify-content: center;
+}
+
+.foot1 {
+  background-color: #0f1111;
+  color: white;
+  width: 100%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80px;
+}
+.pages {
+  font-size: 0.7rem;
+  padding: 25px;
+}
+.pages Link{
+  text-decoration: none;
+}
+.w {
+  font-weight: 700;
+  color: white;
+  margin-bottom: 10px;
+}
+.d Link {
+
 }

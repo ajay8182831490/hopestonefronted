@@ -39,60 +39,37 @@ const BlogRead = () => {
 
 
     return (
-
-
-
-
         <div>
             {data && (
                 <>
-
-                    <div className="card w-100 mb-3">
-
-
+                    <div className="card w-100 mb-3 design4">
                         <div className="col-md-8 w-100">
-                            <div className="card-body ">
+                            <div className="card-body">
                                 {data.images && data.images.length > 0 && (
-                                    <div className=' card-body'  >
-                                        <h1 className='mx-4 my-3'>{data.title}</h1>
-                                        {data.images.map((image, index) => (
+                                    <div className='card-body'>
+                                        <h1 className='mx-4 my-3 '>{data.title}</h1>
+                                        {/* {data.images.map((image, index) => (
                                             <img className="blogreadimage" key={index} src={`https://hopestone.onrender.com/uploads/2024/1/${image}`} alt="" />
-                                        ))}
-
-
-                                        <h3 className='my-4'>{data.categories}</h3>
-
+                                        ))} */}
+                                        <h3 className='my-4 title'>{data.categories}</h3>
                                         {data && data.createdBy && (
-                                            <p className="card-text">
-
-
-
-                                                {data.createdBy.name}
-                                                published at  {data.createdAt}</p>)}
-
+                                            <div>
+                                                <div dangerouslySetInnerHTML={{ __html: data.description }} />
+                                                <p className="card-text">
+                                                    <b> {data.createdBy.name} </b>published at {data.createdAt}
+                                                </p>
+                                            </div>
+                                        )}
                                     </div>
                                 )}
-
-
-                                <div dangerouslySetInnerHTML={{ __html: data.description }} />
-
-
-
                             </div>
-                            {/* {<CommentPage postId={data._id} />} */}
                         </div>
                     </div>
-                    {<CommentPage postId={data._id} />}
+                    <CommentPage postId={data._id} />
                 </>
             )}
         </div>
+    );
+};
 
-    )
-}
-
-
-
-
-
-
-export default BlogRead
+export default BlogRead;

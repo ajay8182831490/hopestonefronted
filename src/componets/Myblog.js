@@ -13,7 +13,7 @@ const Myblog = () => {
     const history = useNavigate();
     const notify = (msg) => toast.success(msg, {
         position: "top-right",
-        autoClose: 3000,
+        autoClose: 500,
         hideProgressBar: false,
         closeOnClick: true,
         pauseOnHover: true,
@@ -24,7 +24,7 @@ const Myblog = () => {
     });
     const notifyFalse = (msg) => toast.error(msg, {
         position: "top-right",
-        autoClose: 3000,
+        autoClose: 500,
         hideProgressBar: false,
         closeOnClick: true,
         pauseOnHover: true,
@@ -33,6 +33,19 @@ const Myblog = () => {
         theme: "colored"
 
     });
+    const isLoggedIn = localStorage.getItem('token');
+
+    useEffect(() => {
+        if (!isLoggedIn) {
+
+            history('/login');
+            notifyFalse('Unauthorized access. Please log in to update your password.');
+
+            return;
+        }
+
+
+    }, [isLoggedIn]);
 
     const fetchData = async () => {
         try {
@@ -40,6 +53,7 @@ const Myblog = () => {
 
 
             setPost(result.postIds);
+
         } catch (error) {
             console.error('Error fetching user data:', error);
         }
@@ -66,51 +80,49 @@ const Myblog = () => {
 
     return (
         <>
-            <div className="row my-3">
+
+
+
+
+            <div className="container">
                 <h2>My Blog</h2>
-                {Array.isArray(post) && post.length > 0 ? (
-                    <table className="table">
-                        <thead>
-                            <tr>
-                                <th scope="col">#</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {post.map((post, index) => (
-                                <tr key={post._id}>
-                                    <td>
-                                        <span>{post.title}</span>
-                                        <button
-                                            type="button"
-                                            className="btn btn-primary"
-                                            onClick={() => handleDeletePost(post._id)}
-                                        >
-                                            Delete
-                                        </button>
-                                        <Link
-                                            className="btn btn-primary"
-                                            to={`/Myblog/Update/${encodeURIComponent(post._id)}`}
-                                            role="button"
-                                        >
-                                            Update
-                                        </Link>
-                                        <Link
-                                            className="btn btn-primary"
-                                            to={`/Myblog/read/${encodeURIComponent(post._id)}`}
-                                            role="button"
-                                        >
-                                            Read More
-                                        </Link>
-                                    </td>
-                                </tr>
-                            ))}
-                        </tbody>
-                    </table>
-                ) : (
+                <div className="d-flex flex-wrap justify-content-around ">
+                    {Array.isArray(post) && post.length > 0 ? (
+                        post.map((post) => (
+                            <div className="card m-2 design3" key={post._id}>
 
-                    <p>No posts available.</p>
+                                <p><b>{post.title}</b></p>
 
-                )}
+                                <div className="">
+                                    <Link
+                                        style={{ color: 'green', fontSize: '16px', fontWeight: 'bold', textDecoration: 'none' }}
+                                        to={`/Myblog/read/${encodeURIComponent(post._id)}`}
+                                        role="button"
+                                    >
+                                        Read More
+                                    </Link>
+                                    <Link
+                                        style={{ color: 'green', fontSize: '16px', fontWeight: 'bold', textDecoration: 'none', margin: '5px' }}
+                                        to={`/Myblog/Update/${encodeURIComponent(post._id)}`}
+                                        role="button"
+                                    >
+                                        Update
+                                    </Link>
+
+                                    <button
+                                        type="button"
+                                        className="btn btn-danger mx-3 mb-2"
+                                        onClick={() => handleDeletePost(post._id)}
+                                    >
+                                        Delete
+                                    </button>
+                                </div>
+                            </div>
+                        ))
+                    ) : (
+                        <p>No posts available.</p>
+                    )}
+                </div>
             </div>
         </>
     )

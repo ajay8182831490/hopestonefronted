@@ -9,8 +9,7 @@
     "concurrently": "^8.2.2",
     "dark-mode-light-mode": "^1.4.1",
     "dotenv": "^16.3.1",
-   
-    
+    "lodash": "^4.17.21",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-quill": "^2.0.0",

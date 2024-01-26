@@ -34,6 +34,12 @@ export const UserContextProvider = ({ children }) => {
                 },
             });
 
+            if (response.status === 401) {
+                // Unauthorized, remove token and handle accordingly
+                localStorage.removeItem('token');
+                throw new Error('Unauthorized: Token is invalid or expired');
+            }
+
             if (!response.ok) {
                 throw new Error(`Server returned ${response.status} ${response.statusText}`);
             }

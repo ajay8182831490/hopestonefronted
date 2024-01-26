@@ -1,5 +1,5 @@
 import React from 'react'
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { useState } from 'react';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -11,7 +11,7 @@ const Signup = (props) => {
 
     const notify = (msg) => toast.success(msg, {
         position: "top-right",
-        autoClose: 3000,
+        autoClose: 500,
         hideProgressBar: false,
         closeOnClick: true,
         pauseOnHover: true,
@@ -22,7 +22,7 @@ const Signup = (props) => {
     });
     const notifyFalse = (msg) => toast.error(msg, {
         position: "top-right",
-        autoClose: 3000,
+        autoClose: 500,
         hideProgressBar: false,
         closeOnClick: true,
         pauseOnHover: true,
@@ -43,7 +43,7 @@ const Signup = (props) => {
         formData.append('name', name);
         formData.append('password', password);
 
-        // Append each file to the FormData
+
         for (const image of images) {
             formData.append('images', image);
 
@@ -87,35 +87,39 @@ const Signup = (props) => {
             // Handle file input
             setImages([...files]); // Update images with the selected files
         } else {
-            // Handle non-file inputs
+
             setCredentials({ ...credentials, [name]: value });
         }
     }
     return (
         <div className='design'>
-            <form encType="multipart/form-data" onSubmit={handleSubmit}>
-                <div className="mb-3">
-                    <label htmlFor="name" className="form-label">Name</label>
-                    <input type="text" className="form-control" id="name" name='name' aria-describedby="emailHelp" onChange={onChange} />
+            <div className="form">
+                <h3 style={{ color: 'black' }}>Create an Account</h3>
+                <form encType="multipart/form-data" onSubmit={handleSubmit}>
+                    <div className="mb-3">
+                        <label htmlFor="name" className="form-label">Name</label>
+                        <input type="text" className="form-control" id="name" name='name' aria-describedby="emailHelp" onChange={onChange} />
 
-                </div>
-                <div className="mb-3">
-                    <label htmlFor="email" className="form-label">Email address</label>
-                    <input type="email" className="form-control" id="email" name='email' aria-describedby="emailHelp" onChange={onChange} />
-                    <div id="emailHelp" className="form-text">We'll never share your email with anyone else.</div>
-                </div>
-                <div className="mb-3">
-                    <label htmlFor="password" className="form-label">Password</label>
-                    <input type="password" className="form-control" id="password" name='password' minLength={5} required onChange={onChange} />
-                </div>
-                <div className="mb-3">
-                    <label htmlFor="image" className="form-label">image</label>
-                    <input type="file" className="form-control" id="image" name='image' required onChange={onChange} />
-                </div>
+                    </div>
+                    <div className="mb-3">
+                        <label htmlFor="email" className="form-label">Email address</label>
+                        <input type="email" className="form-control" id="email" name='email' aria-describedby="emailHelp" onChange={onChange} />
+                    </div>
+                    <div className="mb-3">
+                        <label htmlFor="password" className="form-label">Password</label>
+                        <input type="password" className="form-control" id="password" name='password' minLength={5} required onChange={onChange} />
+                    </div>
+                    <div className="mb-3">
+                        <label htmlFor="image" className="form-label">image</label>
+                        <input type="file" className="form-control" id="image" name='image' required onChange={onChange} />
+                    </div>
 
 
-                <button type="submit" className="btn btn-primary">Submit</button>
-            </form>
+                    <button type="submit" className="btn btn-primary">Submit</button>
+
+                    <span className='span' ><Link to="/signup" style={{ color: 'black', fontSize: '16px', fontWeight: 'bold', textDecoration: 'none' }}>Signup</Link></span>
+                </form>
+            </div>
         </div>
     )
 }

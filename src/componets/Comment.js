@@ -18,17 +18,19 @@ const Comment = ({ onSubmit }) => {
 
     return (
         <div className="mb-3">
-            <label htmlFor="content" className="form-label">Leave a comment</label>
-            <input
-                type="text"
-                className="form-control"
-                id="content"
-                name="content"
-                placeholder="Leave a comment"
-                value={content}
-                onChange={handleContentChange}
-            />
-            <button className="btn btn-primary" onClick={handleSubmit}>Submit</button>
+            <div className="form">
+                <h3 style={{ color: 'black', margin: '3px', textAlign: 'center' }}>Leave a comment</h3>
+                <input
+                    type="text"
+                    className="form-control"
+                    id="content"
+                    name="content"
+                    placeholder="Leave a comment"
+                    value={content}
+                    onChange={handleContentChange}
+                /> <div className="button">
+                    <button className="btn btn-primary my-3" onClick={handleSubmit}>Submit</button></div>
+            </div>
         </div>
     );
 };

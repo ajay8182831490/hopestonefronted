@@ -9,7 +9,7 @@ const Verify = () => {
     let history = useNavigate();
     const notify = (msg) => toast.success(msg, {
         position: "top-right",
-        autoClose: 3000,
+        autoClose: 500,
         hideProgressBar: false,
         closeOnClick: true,
         pauseOnHover: true,
@@ -20,7 +20,7 @@ const Verify = () => {
     });
     const notifyFalse = (msg) => toast.error(msg, {
         position: "top-right",
-        autoClose: 3000,
+        autoClose: 500,
         hideProgressBar: false,
         closeOnClick: true,
         pauseOnHover: true,
@@ -50,7 +50,7 @@ const Verify = () => {
             // Handle error and provide feedback to the user
         }
         const json = await response.json()
-        console.log(json);
+
 
 
 
@@ -106,19 +106,22 @@ const Verify = () => {
     return (
 
         <div className='design'>
-            <form onSubmit={handleSubmit}>
-                <div className="mb-3">
-                    <label htmlFor="email" className="form-label">Email address</label>
-                    <input type="email" className="form-control" id="email" name='email' aria-describedby="emailHelp" onChange={onChange} />
-                    <div id="emailHelp" className="form-text">We'll never share your email with anyone else.</div>
-                </div>
-                <div className="mb-3">
-                    <label htmlFor="text" className="form-label">OTP</label>
-                    <input type="password" className="form-control" id="otp" name='otp' minLength={6} required onChange={onChange} />
-                </div>
-                <button type="submit" className="btn btn-primary">Submit</button>
-            </form>
-            <button type="button" className="btn btn-primary" onClick={handleResendOTP}>Resend OTP</button>
+            <div className="form">
+                <h3 style={{ color: 'black', margin: '3px' }}>Verify Account</h3>
+                <form onSubmit={handleSubmit}>
+                    <div className="mb-3">
+                        <label htmlFor="email" className="form-label">Email address</label>
+                        <input type="email" className="form-control" id="email" name='email' aria-describedby="emailHelp" onChange={onChange} />
+                    </div>
+                    <div className="mb-3">
+                        <label htmlFor="text" className="form-label">OTP</label>
+                        <input type="password" className="form-control" id="otp" name='otp' minLength={6} required onChange={onChange} />
+                    </div>
+                    <button type="submit" className="btn btn-primary">Submit</button>
+                    <span>
+                        <button type="button" className="btn btn-dark mx-3" onClick={handleResendOTP}>Resend OTP</button></span>
+                </form>
+            </div>
         </div>
 
     )

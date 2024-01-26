@@ -60,5 +60,17 @@ h2 {
 p {
     color: #555;
 }
+.design3{
+    width: 30%;
+    height: auto;
+    color: white;
+    background:white;
+    margin: auto;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    margin-top: 10px;
+   
+}
 
 /* Add any additional styling based on your preferences */
