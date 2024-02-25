@@ -43,6 +43,7 @@ const UpdatesPost = () => {
         try {
             const result = await readPost(postId);
             setData(result);
+
         } catch (error) {
             console.error('Error fetching user data:', error);
         }

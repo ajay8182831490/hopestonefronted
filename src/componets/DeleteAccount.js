@@ -65,6 +65,7 @@ const DeleteAccount = () => {
         });
         const json = await response.json()
         if (json.success) {
+            localStorage.removeItem('token');
             notify(json.msg);
             history('/signup');
         } else {

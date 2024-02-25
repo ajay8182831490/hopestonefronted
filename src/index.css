@@ -19,7 +19,8 @@ background-image: linear-gradient(to right bottom, #d16ba5, #aa629d, #845890, #6
 
 }
 .profileimage{
-  width: 30px;
+  width: 50px;
+  height: 50px;
   background-color: beige;
 
   border-radius: 50%;
@@ -240,7 +241,4 @@ margin-top: 20px;
   font-weight: 700;
   color: white;
   margin-bottom: 10px;
-}
-.d Link {
-
 }
